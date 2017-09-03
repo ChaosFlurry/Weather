@@ -30,7 +30,6 @@ public class WeatherReportRetriever {
     }
     
     public static Map<String, String> parseWeatherInformation(String information) {
-        // match <![CDATA[...]]>
         Pattern CDATA = Pattern.compile("<!\\[CDATA\\[(.+)]]>", Pattern.DOTALL);
         Matcher CDATAMatcher = CDATA.matcher(information);
         

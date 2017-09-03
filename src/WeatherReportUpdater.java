@@ -30,13 +30,13 @@ public class WeatherReportUpdater {
         Runnable getWeather = () -> {
             currentReport = WeatherReportRetriever.getCurrentWeatherReport(rssFeed);
             if (previousReport == null || !currentReport.getTime().equals(previousReport.getTime())) {
-                //WeatherReportExporter.exportAll(currentReport);
+                WeatherReportExporter.exportAll(currentReport);
             }
             previousReport = currentReport;
         };
         
         currentReport = WeatherReportRetriever.getCurrentWeatherReport(rssFeed);
-        //WeatherReportExporter.exportAll(currentReport);
+        WeatherReportExporter.exportAll(currentReport);
         previousReport = currentReport;
         
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);

@@ -83,8 +83,7 @@ public class WeatherReport {
                 "Windchill: " + windchill + "\n" +
                 "Dew Point: " + dewpoint + "\n" +
                 "Wind: " + wind + "\n" +
-                "Air Quality Health Index: " + airQualityHealthIndex + "\n" +
-                "---\n";
+                "Air Quality Health Index: " + airQualityHealthIndex + "\n";
     }
     
     public String generateXML() {
