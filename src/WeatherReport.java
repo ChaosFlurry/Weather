@@ -1,4 +1,3 @@
-@SuppressWarnings("unused")
 public class WeatherReport {
     private String city;
     private String observedAt;
@@ -6,135 +5,145 @@ public class WeatherReport {
     private String condition;
     private String temperature;
     private String pressure;
-    private String tendency;
+    private String pressureTendency;
     private String visibility;
     private String humidity;
     private String windchill;
-    private String dewpoint;
-    private String wind;
+    private String dewPoint;
+    private String windDirection;
+    private String windSpeed;
+    private String windGust;
     private String airQualityHealthIndex;
     
-    private WeatherReport(WeatherReportBuilder builder) {
-        this.city = builder.city;
-        this.observedAt = builder.observedAt;
-        this.time = builder.time;
-        this.condition = builder.condition;
-        this.temperature = builder.temperature;
-        this.pressure = builder.pressure;
-        this.tendency = builder.tendency;
-        this.visibility = builder.visibility;
-        this.humidity = builder.humidity;
-        this.windchill = builder.windchill;
-        this.dewpoint = builder.dewpoint;
-        this.wind = builder.wind;
-        this.airQualityHealthIndex = builder.airQualityHealthIndex;
+    private WeatherReport(WeatherReportBuilder weatherReportBuilder) {
+        this.city = weatherReportBuilder.city;
+        this.observedAt = weatherReportBuilder.observedAt;
+        this.time = weatherReportBuilder.time;
+        this.condition = weatherReportBuilder.condition;
+        this.temperature = weatherReportBuilder.temperature;
+        this.pressure = weatherReportBuilder.pressure;
+        this.pressureTendency = weatherReportBuilder.pressureTendency;
+        this.visibility = weatherReportBuilder.visibility;
+        this.humidity = weatherReportBuilder.humidity;
+        this.windchill = weatherReportBuilder.windchill;
+        this.dewPoint = weatherReportBuilder.dewPoint;
+        this.windDirection = weatherReportBuilder.windDirection;
+        this.windSpeed = weatherReportBuilder.windSpeed;
+        this.windGust = weatherReportBuilder.windGust;
+        this.airQualityHealthIndex = weatherReportBuilder.airQualityHealthIndex;
     }
     
     public String getCity() {
         return city;
     }
+    
     public String getObservedAt() {
         return observedAt;
     }
+    
     public String getTime() {
         return time;
     }
+    
     public String getCondition() {
         return condition;
     }
+    
     public String getTemperature() {
         return temperature;
     }
+    
     public String getPressure() {
         return pressure;
     }
-    public String getTendency() {
-        return tendency;
+    
+    public String getPressureTendency() {
+        return pressureTendency;
     }
+    
     public String getVisibility() {
         return visibility;
     }
+    
     public String getHumidity() {
         return humidity;
     }
+    
     public String getWindchill() {
         return windchill;
     }
-    public String getDewpoint() {
-        return dewpoint;
+    
+    public String getDewPoint() {
+        return dewPoint;
     }
-    public String getWind() {
-        return wind;
+    
+    public String getWindDirection() {
+        return windDirection;
     }
+    
+    public String getWindSpeed() {
+        return windSpeed;
+    }
+    
+    public String getWindGust() {
+        return windGust;
+    }
+    
     public String getAirQualityHealthIndex() {
         return airQualityHealthIndex;
     }
     
     @Override
     public String toString() {
-        return "Weather forecast for " + city + " as of " + time + "\n" +
-                "Observed at: " + observedAt + "\n" +
-                "Condition: " + condition + "\n" +
-                "Temperature: " + temperature + "\n" +
-                "Pressure: " + pressure + "\n" +
-                "Tendency: " + tendency + "\n" +
-                "Visibility: " + visibility + "\n" +
-                "Humidity: " + humidity + "\n" +
-                "Windchill: " + windchill + "\n" +
-                "Dew Point: " + dewpoint + "\n" +
-                "Wind: " + wind + "\n" +
-                "Air Quality Health Index: " + airQualityHealthIndex + "\n";
-    }
-    
-    public String generateXML() {
-        return
-                "<city>" + city + "</city>\n" +
-                "<observedAt>" + observedAt + "</observedAt>\n" +
-                "<time>" + time + "</time>\n" +
-                "<condition>" + condition + "</condition>\n" +
-                "<temperature>" + temperature + "</temperature>\n" +
-                "<pressure>" + pressure + "</pressure>\n" +
-                "<tendency>" + tendency + "</tendency>\n" +
-                "<visibility>" + visibility + "</visibility>\n" +
-                "<humidity>" + humidity + "</humidity>\n" +
-                "<windchill>" + windchill + "</windchill>\n" +
-                "<dewpoint>" + dewpoint + "</dewpoint>\n" +
-                "<wind>" + wind + "</wind>\n" +
-                "<airQualityHealthIndex>" + airQualityHealthIndex + "</airQualityHealthIndex>\n";
-    }
-    
-    public String generateCSV() {
-        return
-                city + "," +
-                observedAt + "," +
-                time + "," +
-                condition + "," +
-                temperature + "," +
-                pressure + "," +
-                tendency + "," +
-                visibility + "," +
-                humidity + "," +
-                windchill + "," +
-                dewpoint + "," +
-                wind + "," +
-                airQualityHealthIndex + "\n";
-    }
-    
-    public String generateTSV() {
-        return
-                city + "\t" +
-                observedAt + "\t" +
-                time + "\t" +
-                condition + "\t" +
-                temperature + "\t" +
-                pressure + "\t" +
-                tendency + "\t" +
-                visibility + "\t" +
-                humidity + "\t" +
-                windchill + "\t" +
-                dewpoint + "\t" +
-                wind + "\t" +
-                airQualityHealthIndex + "\n";
+        StringBuilder weatherForecastStringBuilder = new StringBuilder();
+        
+        weatherForecastStringBuilder
+                .append("Weather Conditions for ").append(city).append(" as of ").append(time).append("\n")
+                .append("Observed at: ").append(observedAt).append("\n")
+                .append("Condition: ").append(condition).append("\n")
+                .append("Temperature: ").append(temperature).append(" C");
+        
+        if (windchill != null) {
+            weatherForecastStringBuilder
+                    .append(" (Feels like ").append(windchill).append(" C").append("\n");
+        } else {
+            weatherForecastStringBuilder
+                    .append("\n");
+        }
+        
+        weatherForecastStringBuilder
+                .append("Pressure: ").append(pressure).append(" kPa").append(" and ").append(pressureTendency).append("\n")
+                .append("Visibility: ").append(visibility).append(" km").append("\n")
+                .append("Humidity: ").append(humidity).append("%").append("\n")
+                .append("Dew Point: ").append(dewPoint).append(" C").append("\n")
+                .append("Wind: ").append(windSpeed).append(" km/h");
+        
+        if (windGust != null) {
+            weatherForecastStringBuilder
+                    .append(" with gusts up to ").append(windGust).append("km/h").append("\n");
+        } else {
+            weatherForecastStringBuilder
+                    .append("\n");
+        }
+        
+        weatherForecastStringBuilder
+                .append("Air Quality Health Index: ").append(airQualityHealthIndex);
+        
+        if (Integer.parseInt(airQualityHealthIndex) < 4) {
+            weatherForecastStringBuilder
+                    .append(" (Low Risk)").append("\n");
+        } else if (Integer.parseInt(airQualityHealthIndex) < 7) {
+            weatherForecastStringBuilder
+                    .append(" (Moderate Risk)").append("\n");
+        } else if (Integer.parseInt(airQualityHealthIndex) < 11) {
+            weatherForecastStringBuilder
+                    .append(" (High Risk)").append("\n");
+        } else {
+            weatherForecastStringBuilder
+                    .append(" (Very High Risk)").append("\n");
+        }
+        
+        return weatherForecastStringBuilder.toString();
     }
     
     public static class WeatherReportBuilder {
@@ -144,91 +153,87 @@ public class WeatherReport {
         private String condition;
         private String temperature;
         private String pressure;
-        private String tendency;
+        private String pressureTendency;
         private String visibility;
         private String humidity;
         private String windchill;
-        private String dewpoint;
-        private String wind;
+        private String dewPoint;
+        private String windDirection;
+        private String windSpeed;
+        private String windGust;
         private String airQualityHealthIndex;
         
-        public WeatherReportBuilder() {
-            this.city = "-";
-            this.observedAt = "-";
-            this.time = "-";
-            this.condition = "-";
-            this.temperature = "-";
-            this.pressure = "-";
-            this.tendency = "-";
-            this.visibility = "-";
-            this.humidity = "-";
-            this.windchill = "-";
-            this.dewpoint = "-";
-            this.wind = "-";
-            this.airQualityHealthIndex = "-";
-        }
-        
-        public WeatherReportBuilder city(String city) {
+        public WeatherReportBuilder setCity(String city) {
             this.city = city;
             return this;
         }
-    
-        public WeatherReportBuilder observedAt(String observedAt) {
+        
+        public WeatherReportBuilder setObservedAt(String observedAt) {
             this.observedAt = observedAt;
             return this;
         }
         
-        public WeatherReportBuilder time(String time) {
+        public WeatherReportBuilder setTime(String time) {
             this.time = time;
             return this;
         }
         
-        public WeatherReportBuilder condition(String condition) {
+        public WeatherReportBuilder setCondition(String condition) {
             this.condition = condition;
             return this;
         }
         
-        public WeatherReportBuilder temperature(String temperature) {
+        public WeatherReportBuilder setTemperature(String temperature) {
             this.temperature = temperature;
             return this;
         }
         
-        public WeatherReportBuilder pressure(String pressure) {
+        public WeatherReportBuilder setPressure(String pressure) {
             this.pressure = pressure;
             return this;
         }
         
-        public WeatherReportBuilder tendency(String tendency) {
-            this.tendency = tendency;
+        public WeatherReportBuilder setTendency(String pressureTendency) {
+            this.pressureTendency = pressureTendency;
             return this;
         }
         
-        public WeatherReportBuilder visibility(String visibility) {
+        public WeatherReportBuilder setVisibility(String visibility) {
             this.visibility = visibility;
             return this;
         }
         
-        public WeatherReportBuilder humidity(String humidity) {
+        public WeatherReportBuilder setHumidity(String humidity) {
             this.humidity = humidity;
             return this;
         }
         
-        public WeatherReportBuilder windchill(String windchill) {
+        public WeatherReportBuilder setWindchill(String windchill) {
             this.windchill = windchill;
             return this;
         }
         
-        public WeatherReportBuilder dewpoint(String dewpoint) {
-            this.dewpoint = dewpoint;
+        public WeatherReportBuilder setDewPoint(String dewPoint) {
+            this.dewPoint = dewPoint;
             return this;
         }
         
-        public WeatherReportBuilder wind(String wind) {
-            this.wind = wind;
+        public WeatherReportBuilder setWindDirection(String windDirection) {
+            this.windDirection = windDirection;
             return this;
         }
         
-        public WeatherReportBuilder airQualityHealthIndex(String airQualityHealthIndex) {
+        public WeatherReportBuilder setWindSpeed(String windSpeed) {
+            this.windSpeed = windSpeed;
+            return this;
+        }
+        
+        public WeatherReportBuilder setWindGust(String windGust) {
+            this.windGust = windGust;
+            return this;
+        }
+        
+        public WeatherReportBuilder setAirQualityHealthIndex(String airQualityHealthIndex) {
             this.airQualityHealthIndex = airQualityHealthIndex;
             return this;
         }
