@@ -142,7 +142,6 @@ public class WeatherReport {
             weatherForecastStringBuilder
                     .append(" (Very High Risk)").append("\n");
         }
-        
         return weatherForecastStringBuilder.toString();
     }
     

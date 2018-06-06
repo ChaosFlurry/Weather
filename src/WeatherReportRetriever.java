@@ -16,11 +16,11 @@ public class WeatherReportRetriever {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String weatherForecastRawData = weatherReportStringBuilder.toString();
-        
+        String weatherReportRawData = weatherReportStringBuilder.toString();
+    
         // group 1 - matches city name
         Pattern cityPattern = Pattern.compile("<title>(.+) - Weather - Environment Canada</title>");
-        Matcher cityMatcher = cityPattern.matcher(weatherForecastRawData);
+        Matcher cityMatcher = cityPattern.matcher(weatherReportRawData);
         
         // group 1 - matches observation location name
         // group 2 - matches time of day
@@ -37,7 +37,7 @@ public class WeatherReportRetriever {
         // group 13 - matches wind gust speed (optional)
         // group 14 - matches air quality health index
         Pattern reportDataPattern = Pattern.compile("<summary type=\"html\"><!\\[CDATA\\[<b>Observed at:</b> (.+?) (\\d+:\\d+ (?:AM|PM) [A-Z]{3} (?:Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday) \\d{2} [A-z]+ \\d{4}) <br/>\\n<b>Condition:</b> (.+?) <br/>\\n<b>Temperature:</b> (-?\\d+\\.\\d)&deg;C <br/>\\n<b>Pressure / Tendency:</b> (\\d+\\.\\d) kPa (rising|falling)<br/>\\n<b>Visibility:</b> (\\d+\\.\\d) km<br/>\\n<b>Humidity:</b> (\\d+) %<br/>\\n(?:<b>Wind Chill:</b> (-?\\d+) <br/>\\n)?<b>Dewpoint:</b> (-?\\d+\\.\\d)&deg;C <br/>\\n<b>Wind:</b> ([A-Z]{1,3}) (\\d+) km/h(?: gust (\\d+) km/h)?<br/>\\n<b>Air Quality Health Index:</b> (\\d+) <br/>\\n]]></summary>");
-        Matcher reportDataMatcher = reportDataPattern.matcher(weatherForecastRawData);
+        Matcher reportDataMatcher = reportDataPattern.matcher(weatherReportRawData);
         
         WeatherReport.WeatherReportBuilder weatherReportBuilder = new WeatherReport.WeatherReportBuilder();
         
