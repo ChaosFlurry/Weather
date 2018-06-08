@@ -120,7 +120,7 @@ public class WeatherForecast {
             weatherForecastStringBuilder
                     .append("\n");
         }
-        return weatherForecastStringBuilder.toString().trim();
+        return weatherForecastStringBuilder.toString();
     }
     
     public static class WeatherForecastBuilder {
