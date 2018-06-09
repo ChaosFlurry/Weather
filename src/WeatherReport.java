@@ -120,7 +120,7 @@ public class WeatherReport {
         
         if (windGust != null) {
             weatherForecastStringBuilder
-                    .append(" with gusts up to ").append(windGust).append("km/h").append("\n");
+                    .append(" with gusts up to ").append(windGust).append(" km/h").append("\n");
         } else {
             weatherForecastStringBuilder
                     .append("\n");
