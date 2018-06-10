@@ -1,4 +1,5 @@
 public class WeatherReport {
+    private String rawText;
     private String city;
     private String observedAt;
     private String time;
@@ -16,6 +17,7 @@ public class WeatherReport {
     private String airQualityHealthIndex;
     
     private WeatherReport(WeatherReportBuilder weatherReportBuilder) {
+        this.rawText = weatherReportBuilder.rawText;
         this.city = weatherReportBuilder.city;
         this.observedAt = weatherReportBuilder.observedAt;
         this.time = weatherReportBuilder.time;
@@ -31,6 +33,10 @@ public class WeatherReport {
         this.windSpeed = weatherReportBuilder.windSpeed;
         this.windGust = weatherReportBuilder.windGust;
         this.airQualityHealthIndex = weatherReportBuilder.airQualityHealthIndex;
+    }
+    
+    public String getRawText() {
+        return rawText;
     }
     
     public String getCity() {
@@ -146,6 +152,7 @@ public class WeatherReport {
     }
     
     public static class WeatherReportBuilder {
+        private String rawText;
         private String city;
         private String observedAt;
         private String time;
@@ -161,6 +168,11 @@ public class WeatherReport {
         private String windSpeed;
         private String windGust;
         private String airQualityHealthIndex;
+        
+        public WeatherReportBuilder setRawText(String rawText) {
+            this.rawText = rawText;
+            return this;
+        }
         
         public WeatherReportBuilder setCity(String city) {
             this.city = city;

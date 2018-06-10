@@ -1,6 +1,7 @@
 import java.util.List;
 
 public class WeatherForecast {
+    private List<String> rawText;
     private List<String> day;
     private List<String> forecastSummary;
     private List<String> peakTemperature;
@@ -11,6 +12,7 @@ public class WeatherForecast {
     private List<String> issuedTime;
     
     private WeatherForecast(WeatherForecastBuilder weatherForecastBuilder) {
+        this.rawText = weatherForecastBuilder.rawText;
         this.day = weatherForecastBuilder.day;
         this.forecastSummary = weatherForecastBuilder.forecastSummary;
         this.peakTemperature = weatherForecastBuilder.peakTemperature;
@@ -19,6 +21,10 @@ public class WeatherForecast {
         this.humidex = weatherForecastBuilder.humidex;
         this.UVIndex = weatherForecastBuilder.UVIndex;
         this.issuedTime = weatherForecastBuilder.issuedTime;
+    }
+    
+    public List<String> getRawText() {
+        return rawText;
     }
     
     public List<String> getDay() {
@@ -124,6 +130,7 @@ public class WeatherForecast {
     }
     
     public static class WeatherForecastBuilder {
+        private List<String> rawText;
         private List<String> day;
         private List<String> forecastSummary;
         private List<String> peakTemperature;
@@ -132,6 +139,11 @@ public class WeatherForecast {
         private List<String> humidex;
         private List<String> UVIndex;
         private List<String> issuedTime;
+        
+        public WeatherForecastBuilder setRawText(List<String> rawText) {
+            this.rawText = rawText;
+            return this;
+        }
         
         public WeatherForecastBuilder setDay(List<String> day) {
             this.day = day;

@@ -11,7 +11,6 @@ public class WeatherLogger {
     
     public WeatherLogger(Path weatherLogFile) {
         this.weatherLogFile = weatherLogFile;
-        System.out.println(weatherLogFile);
     }
     
     public void log(WeatherReport weatherReport) throws IOException {

@@ -2,6 +2,7 @@
   <dictionary name="John">
     <words>
       <w>humidex</w>
+      <w>metar</w>
     </words>
   </dictionary>
 </component>

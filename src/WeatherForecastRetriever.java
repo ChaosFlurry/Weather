@@ -39,6 +39,7 @@ public class WeatherForecastRetriever {
         
         WeatherForecast.WeatherForecastBuilder weatherForecastBuilder = new WeatherForecast.WeatherForecastBuilder();
         
+        List<String> rawText = new ArrayList<>();
         List<String> day = new ArrayList<>();
         List<String> forecastSummary = new ArrayList<>();
         List<String> peakTemperature = new ArrayList<>();
@@ -49,6 +50,8 @@ public class WeatherForecastRetriever {
         List<String> issuedTime = new ArrayList<>();
         
         while (forecastSummaryMatcher.find() && forecastDetailsMatcher.find()) {
+            rawText.add(forecastSummaryMatcher.group(0) + "\n" + forecastDetailsMatcher.group(0));
+            
             day.add(forecastSummaryMatcher.group(1));
             forecastSummary.add(forecastSummaryMatcher.group(2));
             
@@ -90,6 +93,7 @@ public class WeatherForecastRetriever {
         }
         
         return weatherForecastBuilder
+                .setRawText(rawText)
                 .setDay(day)
                 .setForecastSummary(forecastSummary)
                 .setPeakTemperature(peakTemperature)

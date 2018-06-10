@@ -49,6 +49,7 @@ public class WeatherReportRetriever {
         
         if (reportDataMatcher.find()) {
             weatherReportBuilder
+                    .setRawText(reportDataMatcher.group(0))
                     .setObservedAt(reportDataMatcher.group(1))
                     .setTime(reportDataMatcher.group(2))
                     .setCondition(reportDataMatcher.group(3))
